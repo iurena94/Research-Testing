@@ -1,3 +1,4 @@
+import builtins
 # Creating player class
 
 class Player:
@@ -8,10 +9,16 @@ class Player:
             self.name = "test" 
         else:
             self.name = n 
+    
+    def __repr__(self) -> str:
+        return "Player()"
+    def __str__(self) -> str:
+        return f"{self.name} has the {self.score} points"
 
 
 def main():
-    pass
+    p = Player("one")
+    print(p)
 
 if __name__ == "__main__":
     main()
