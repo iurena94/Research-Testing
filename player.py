@@ -14,10 +14,22 @@ class Player:
         return "Player()"
     def __str__(self) -> str:
         return f"{self.name} has the {self.score} points"
-
+    
+    def __add__(self, other):
+        self.score += other
+    def __sub__(self, other):
+        self.score -= other
+        if self.score < 0:
+            self.score = 0
 
 def main():
-    p = Player("one")
+    p = Player("Player1")
+    print(p)
+    p + 5
+    print(p)
+    p - 3
+    print(p)
+    p - 100
     print(p)
 
 if __name__ == "__main__":
