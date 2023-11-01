@@ -15,22 +15,27 @@ class Player:
     def __str__(self) -> str:
         return f"{self.name} has the {self.score} points"
     
-    def __add__(self, other):
-        self.score += other
-    def __sub__(self, other):
+    def __iadd__(self, other):
+        self.score += int(other) 
+        return self
+    def __isub__(self, other):
         self.score -= other
         if self.score < 0:
             self.score = 0
+        return self
+
+    def __lt__(self, other):
+        return self.score < other.score
+    def __gt__(self, other):
+        return self.score > other.score
 
 def main():
     p = Player("Player1")
-    print(p)
-    p + 5
-    print(p)
-    p - 3
-    print(p)
-    p - 100
-    print(p)
+    x = Player("Player2")
+    p += 5
+    
+    x += 30
+    print(x<p)
 
 if __name__ == "__main__":
     main()
