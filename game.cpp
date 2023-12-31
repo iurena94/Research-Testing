@@ -19,6 +19,9 @@ public:
     Match(int);
     Match* next;
     Match* prev;
+    // Player* winners;
+    // string teams;
+    //team_comp(string);
 };
 
 Match::Match(int r) {
@@ -26,7 +29,9 @@ Match::Match(int r) {
     next = nullptr;
     prev = nullptr;
     match_number = r;
+    //winners = nullptr;
     //objective = minigames(gamemode);
+    //teams = team_comp(gamemode);
 }
 
 
@@ -53,9 +58,11 @@ private:
 public:
     int game_size; // number of matches in list_of_matches
     void add_match();
-    void end_game();
+    bool is_ended(); // checks to see if the game has ended
     Game();
     ~Game();
+    int max_players;
+    int get_max_player();
     void display(); // displays current match number, gamemode, and objective
 };
 
@@ -63,6 +70,7 @@ Game::Game() {
     head = nullptr;
     tail = nullptr;
     game_size = 0;
+    max_players = get_max_player();
 }
 
 Game::~Game() {
@@ -71,6 +79,15 @@ Game::~Game() {
         tail = tail->next;
         delete temp;
     }
+}
+
+int Game::get_max_player() {
+    int result;
+    do {
+    cout << "Whats the total amount of players playing? (1 - 4): ";
+    cin >> result;
+    } while (result >= 1 && result <= 4);
+    return result;
 }
 
 void Game::display() {
@@ -96,6 +113,8 @@ void Game::add_match() {
     }
 }
 
+// given winning number and team composition, get a pointer to an array of the players and add a point ot the m
+
 int main(){
     Game start;
     start.add_match();
@@ -104,5 +123,19 @@ int main(){
     start.display();
     start.add_match();
     start.display();
+    
+    /*  
+    Game start;
+    while (!start.is_end()){
+        start.add_match();
+        start.display();
+        start.display_teams();
+        cout << "Enter winner [int]: "
+        int winner;
+        cin >> winner;
+        start.head->winners
+
+    }
+    */
     return 0;
 }
